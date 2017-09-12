@@ -15,13 +15,8 @@ ActiveRecord::Schema.define(version: 20170912132445) do
   create_table "pets", force: :cascade do |t|
     t.string "name"
     t.string "animalType"
-    t.string "petSizeType"
-    t.string "petfinderBreedType"
-    t.string "petAgeType"
-    t.string "shelterName"
-    t.string "location"
+    t.string "mix"
     t.string "petGenderType"
-    t.string "petStatusType"
   end
 
   create_table "selections", force: :cascade do |t|
