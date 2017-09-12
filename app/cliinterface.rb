@@ -7,7 +7,7 @@ class CommandLineInterface
   end
 
   def welcome(name)
-    puts "Welcome #{name} to PeTinder! Lets find your perfect partner! Let us know your zipcode and we'll get started."
+    puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! Let us know your zipcode and we'll get started."
     zipcode = gets.chomp.to_i
   end
 
@@ -16,9 +16,12 @@ class CommandLineInterface
     animalType = gets.chomp.downcase
   end
 
-  def search_for_animal(animalType, zipcode)
-    petfinder.find_pets(animalType, zipcode)
+  def search_for_animal(zipcode, animalType)
+    petfinder = Petfinder::Client.new('acc62e2c10e9df251207a7e3a13cd91f', '693cc2fba0334d6949234494055b09f1')
+
+    searched_pet = petfinder.find_pets(zipcode, animalType, count: 25)
+    puts "Our experts have found the perfect pet for you! Its name is below!"
+    puts searched_pet.sample.name
   end
 
-  
 end

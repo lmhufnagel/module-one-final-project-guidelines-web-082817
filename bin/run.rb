@@ -16,7 +16,7 @@ animal = new_cli.get_animal_type(welcome)
 
 #category = new_cli.which_category
 
-search = new_cli.search_for_animal(welcome, animal)
+search = new_cli.search_for_animal(animal, welcome)
 
 # sugg = new_cli.get_suggestion_from_user(name, project)
 # Suggestion.create #(username:, project:, suggestion: )
