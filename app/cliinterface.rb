@@ -4,7 +4,7 @@ class CommandLineInterface
 
   def valid_account
     puts "Please enter your name:"
-    name = gets.chomp
+    name = gets.chomp.capitalize
   end
 
   def welcome(name)
@@ -63,8 +63,12 @@ class CommandLineInterface
     user_match_input = gets.chomp.upcase
   end
 
-  def create_pet(new_pet, animalType, animalGender, searched_shelter)
+  def create_pet(new_pet, animal_type, animal_gender, searched_shelter)
     Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
+  end
+
+  def method_name
+
   end
 
   # def get_selections_from_user(name, animal)
