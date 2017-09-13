@@ -12,33 +12,42 @@ name = new_cli.valid_account
 
 welcome = new_cli.welcome(name)
 
-animal = new_cli.get_animal_type(welcome)
-
 create_user = new_cli.create_user(name, welcome)
 
-sex = new_cli.get_sex
+match_response = "More"
 
-size = new_cli.get_size
+while match_response == "More"
 
-availability = new_cli.availability_message_holder
+  animal = new_cli.get_animal_type(welcome)
 
-response = "N"
+  sex = new_cli.get_sex
 
-while response == "N"
+  size = new_cli.get_size
 
-  found_pet = new_cli.find_random_pet(animal, welcome, sex, size)
+  availability = new_cli.availability_message_holder
 
-  found_shelter = new_cli.find_shelter_for_pet(found_pet)
+  response = "N"
 
-  new_cli.print_animal_info(found_pet, found_shelter, availability)
+  while response == "N"
 
-  response = gets.chomp.upcase
+    found_pet = new_cli.find_random_pet(animal, welcome, sex, size)
+
+    found_shelter = new_cli.find_shelter_for_pet(found_pet)
+
+    new_cli.print_animal_info(found_pet, found_shelter, availability)
+
+    response = gets.chomp.upcase
+  end
+
+  create_pet = new_cli.create_pet(found_pet, animal, sex, found_shelter)
+
+  add_selections = new_cli.get_selections_from_user(create_pet, create_user)
+
+  new_cli.get_match_response
+
+  match_response = gets.chomp.capitalize
+
 end
-
-create_pet = new_cli.create_pet(found_pet, animal, sex, found_shelter)
-
-selections = new_cli.get_selections_from_user(create_pet, create_user)
-
 
 
 # 1 get user info and store it in variables
