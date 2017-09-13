@@ -20,9 +20,15 @@ sex = new_cli.get_sex
 
 size = new_cli.get_size
 
-#category = new_cli.which_category
+availability = new_cli.availability_message_holder
 
-search = new_cli.search_for_animal(animal, welcome, sex, size)
+find_random_pet = new_cli.find_random_pet(animal, welcome, sex, size)
+
+find_shelter = new_cli.find_shelter_for_pet(find_random_pet)
+
+search = new_cli.search_for_animal(find_random_pet, find_shelter, availability)
+
+create_pet = new_cli.create_pet(find_random_pet, animal, sex, find_shelter)
 
 
 # sugg = new_cli.get_suggestion_from_user(name, project)

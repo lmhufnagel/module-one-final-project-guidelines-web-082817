@@ -2,7 +2,6 @@ require "pry"
 
 class CommandLineInterface
 
-
   def valid_account
     puts "Please enter your name:"
     name = gets.chomp
@@ -36,27 +35,36 @@ class CommandLineInterface
     animal_size = gets.chomp.upcase
   end
 
-  def search_for_animal(animal_type, zipcode, animal_gender, animal_size)
+  def availability_message_holder
     availability_messages = ["Waiting for you...", "All yours, baby.", "Will dance for food!", "Take me home!!!!", "Will not show up drunk to your house at 3AM crying, asking for you to let me in. Will probably show up crying asking for you to let me in.", "I'm a fun-loving animal with absolutely no interest in murder.", "If you can't offer me something, GTFO.", "This is snek.", "Free the nipple."]
-    petfinder = Petfinder::Client.new('acc62e2c10e9df251207a7e3a13cd91f', '693cc2fba0334d6949234494055b09f1')
+    pet_availability = availability_messages.sample
+  end
 
-    puts "Our experts have found the perfect pet for you! Its information is below!"
-    # binding.pry
+  def find_random_pet(animal_type, zipcode, animal_gender, animal_size)
+    petfinder = Petfinder::Client.new('acc62e2c10e9df251207a7e3a13cd91f', '693cc2fba0334d6949234494055b09f1')
     options = {animal: animal_type, location: zipcode, sex: animal_gender, size: animal_size}
     new_pet = petfinder.random_pet(options)
+  end
+
+  def find_shelter_for_pet(new_pet)
+    petfinder = Petfinder::Client.new('acc62e2c10e9df251207a7e3a13cd91f', '693cc2fba0334d6949234494055b09f1')
     searched_shelter = petfinder.shelter(new_pet.shelter_id)
-    # binding.pry
+  end
+
+  def search_for_animal(new_pet, searched_shelter, pet_availability)
+    puts "Our experts have found the perfect pet for you! Its information is below!"
     puts "Name: #{new_pet.name}"
     puts "Breed: #{new_pet.breeds.first}"
     puts "Size: #{new_pet.size}"
     puts "Sex: #{new_pet.sex}"
     puts "Shelter: #{searched_shelter.name}"
-    puts "Availability: #{availability_messages.sample}"
+    puts "Availability: #{pet_availability}"
     puts "Would you like to add this pet to your matches? 'Y' or 'N'"
-    # user_match_input = gets.chomp.upcase
-    # if user_match_input == 'Y'
-    #   Pet.create(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
-    # end
+    user_match_input = gets.chomp.upcase
+  end
+
+  def create_pet(new_pet, animalType, animalGender, searched_shelter)
+    Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
   end
 
   # def get_selections_from_user(name, animal)
