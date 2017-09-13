@@ -13,7 +13,7 @@ class CommandLineInterface
   end
 
   def create_user(name, zipcode)
-      User.find_or_create_by(userName: name, userZipCode: zipcode)
+      current_user = User.find_or_create_by(userName: name, userZipCode: zipcode)
   end
 
   def get_animal_type(zipcode)
@@ -64,15 +64,13 @@ class CommandLineInterface
   end
 
   def create_pet(new_pet, animal_type, animal_gender, searched_shelter)
-    Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
+    animal = Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
   end
 
-  def method_name
-
+  def get_selections_from_user(animal, current_user)
+    Selection.find_or_create_by(petId: animal.id, userId: current_user.id)
   end
 
-  # def get_selections_from_user(name, animal)
-  #   Selection.find_or_create_by(petId: animal.id, userId: name.id)
-  # end
+
 
 end

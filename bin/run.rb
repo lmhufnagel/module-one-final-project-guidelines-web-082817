@@ -30,8 +30,4 @@ search = new_cli.search_for_animal(find_random_pet, find_shelter, availability)
 
 create_pet = new_cli.create_pet(find_random_pet, animal, sex, find_shelter)
 
-
-# sugg = new_cli.get_suggestion_from_user(name, project)
-# Suggestion.create #(username:, project:, suggestion: )
-#
-# new_cli.add_date_time
+selections = new_cli.get_selections_from_user(create_pet, create_user)
