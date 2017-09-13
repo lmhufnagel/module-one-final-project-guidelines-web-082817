@@ -51,7 +51,19 @@ class CommandLineInterface
     searched_shelter = petfinder.shelter(new_pet.shelter_id)
   end
 
-  def search_for_animal(new_pet, searched_shelter, pet_availability)
+  # def search_for_animal(new_pet, searched_shelter, pet_availability)
+  #   puts "Our experts have found the perfect pet for you! Its information is below!"
+  #   puts "Name: #{new_pet.name}"
+  #   puts "Breed: #{new_pet.breeds.first}"
+  #   puts "Size: #{new_pet.size}"
+  #   puts "Sex: #{new_pet.sex}"
+  #   puts "Shelter: #{searched_shelter.name}"
+  #   puts "Availability: #{pet_availability}"
+  #   puts "Would you like to add this pet to your matches? 'Y' or 'N'"
+  #   # user_match_input = gets.chomp.upcase
+  # end
+
+  def print_animal_info(new_pet, searched_shelter, pet_availability)
     puts "Our experts have found the perfect pet for you! Its information is below!"
     puts "Name: #{new_pet.name}"
     puts "Breed: #{new_pet.breeds.first}"
@@ -60,15 +72,28 @@ class CommandLineInterface
     puts "Shelter: #{searched_shelter.name}"
     puts "Availability: #{pet_availability}"
     puts "Would you like to add this pet to your matches? 'Y' or 'N'"
-    user_match_input = gets.chomp.upcase
+    # user_match_input = gets.chomp.upcase
   end
+  # def user_input_for_matching(user_match_input, animal_type, zipcode, animal_gender, animal_size, new_pet, searched_shelter, pet_availability)
+  #   if user_match_input == "N"
+  #     find_random_pet(animal_type, zipcode, animal_gender, animal_size)
+  #     find_shelter_for_pet(new_pet)
+  #     search_for_animal(new_pet, searched_shelter, pet_availability)
+  #   end
+  # end
 
   def create_pet(new_pet, animal_type, animal_gender, searched_shelter)
+    puts "Added to your matches!"
     animal = Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
   end
 
   def get_selections_from_user(animal, current_user)
     Selection.find_or_create_by(petId: animal.id, userId: current_user.id)
+  end
+
+  def see_selections_or_view_more
+    puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!"
+    more_or_matches = gets.chomp
   end
 
 

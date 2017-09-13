@@ -22,12 +22,28 @@ size = new_cli.get_size
 
 availability = new_cli.availability_message_holder
 
-find_random_pet = new_cli.find_random_pet(animal, welcome, sex, size)
+response = "N"
 
-find_shelter = new_cli.find_shelter_for_pet(find_random_pet)
+while response == "N"
 
-search = new_cli.search_for_animal(find_random_pet, find_shelter, availability)
+  found_pet = new_cli.find_random_pet(animal, welcome, sex, size)
 
-create_pet = new_cli.create_pet(find_random_pet, animal, sex, find_shelter)
+  found_shelter = new_cli.find_shelter_for_pet(found_pet)
+
+  new_cli.print_animal_info(found_pet, found_shelter, availability)
+
+  response = gets.chomp.upcase
+end
+
+create_pet = new_cli.create_pet(found_pet, animal, sex, found_shelter)
 
 selections = new_cli.get_selections_from_user(create_pet, create_user)
+
+
+
+# 1 get user info and store it in variables
+# 2 get user animal preference and store in variable
+# 3 structure and send query to api
+# 4 present response and gather user input (YN)
+# 5 if N, go to 3, if Y continue execution
+# 6 etc..
