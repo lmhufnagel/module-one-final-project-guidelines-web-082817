@@ -14,9 +14,13 @@ welcome = new_cli.welcome(name)
 
 animal = new_cli.get_animal_type(welcome)
 
+sex = new_cli.get_sex
+
+size = new_cli.get_size
+
 #category = new_cli.which_category
 
-search = new_cli.search_for_animal(animal, welcome)
+search = new_cli.search_for_animal(animal, welcome, sex, size)
 
 
 # sugg = new_cli.get_suggestion_from_user(name, project)

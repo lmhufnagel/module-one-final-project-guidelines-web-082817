@@ -8,5 +8,5 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/develo
 require_all 'lib'
 
 require_relative "../app/pet.rb"
-# require_relative "../app/selections.rb"
-# require_relative "../app/user.rb"
+require_relative "../app/selection.rb"
+require_relative "../app/user.rb"

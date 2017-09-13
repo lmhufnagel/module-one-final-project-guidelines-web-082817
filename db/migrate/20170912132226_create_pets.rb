@@ -1,10 +1,12 @@
 class CreatePets < ActiveRecord::Migration[5.0]
   def change
     create_table :pets do |t|
-      t.string :name
+      t.string :animalName
       t.string :animalType
-      t.string :mix
-      t.string :petGenderType
+      t.string :animalBreed
+      t.string :animalGender
+      t.string :shelterName
+      t.string :availabilityMessage
     end
   end
 end
