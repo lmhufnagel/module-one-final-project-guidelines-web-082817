@@ -49,7 +49,7 @@ while match_response == "More"
 
 end
 
-
+new_cli.view_matches(create_user)
 # 1 get user info and store it in variables
 # 2 get user animal preference and store in variable
 # 3 structure and send query to api

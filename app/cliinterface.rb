@@ -75,7 +75,12 @@ class CommandLineInterface
     puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!"
   end
 
-
+  def view_matches(current_user)
+    all_matches = Selection.find_by_userId(current_user.id)
+    petInfo = all_matches.collect do |matches|
+      Pet.find_by_id(matches.petID)
+    end
+  end
 
 
 
