@@ -14,6 +14,8 @@ welcome = new_cli.welcome(name)
 
 animal = new_cli.get_animal_type(welcome)
 
+create_user = new_cli.create_user(name, welcome)
+
 sex = new_cli.get_sex
 
 size = new_cli.get_size

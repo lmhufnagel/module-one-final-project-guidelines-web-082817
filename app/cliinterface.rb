@@ -11,13 +11,10 @@ class CommandLineInterface
   def welcome(name)
     puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! \nPlease enter your zipcode and we'll get started."
     zipcode = gets.chomp
-    User.create(name: name, zipCode: zipcode)
-    # binding.pry
-    # # zipcode = zipcode - "\n"
-    # if zipcode.length != 5
-    #   puts "Please enter a valid zipcode."
-    #   welcome(name)
-    # end
+  end
+
+  def create_user(name, zipcode)
+      User.find_or_create_by(userName: name, userZipCode: zipcode)
   end
 
   def get_animal_type(zipcode)
@@ -41,10 +38,7 @@ class CommandLineInterface
 
   def search_for_animal(animal_type, zipcode, animal_gender, animal_size)
     availability_messages = ["Waiting for you...", "All yours, baby.", "Will dance for food!", "Take me home!!!!", "Will not show up drunk to your house at 3AM crying, asking for you to let me in. Will probably show up crying asking for you to let me in.", "I'm a fun-loving animal with absolutely no interest in murder.", "If you can't offer me something, GTFO.", "This is snek.", "Free the nipple."]
-
     petfinder = Petfinder::Client.new('acc62e2c10e9df251207a7e3a13cd91f', '693cc2fba0334d6949234494055b09f1')
-    puts "Your input did not register, please try again!"
-    valid_account
 
     puts "Our experts have found the perfect pet for you! Its information is below!"
     # binding.pry
@@ -59,14 +53,14 @@ class CommandLineInterface
     puts "Shelter: #{searched_shelter.name}"
     puts "Availability: #{availability_messages.sample}"
     puts "Would you like to add this pet to your matches? 'Y' or 'N'"
-    user_match_input = gets.chomp.upcase
+    # user_match_input = gets.chomp.upcase
     # if user_match_input == 'Y'
     #   Pet.create(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
     # end
   end
 
-  def get_selections_from_user(name, animal)
-    Selection.find_or_create_by(petId: animal.id, userId: name.id)
-  end
+  # def get_selections_from_user(name, animal)
+  #   Selection.find_or_create_by(petId: animal.id, userId: name.id)
+  # end
 
 end

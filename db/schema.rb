@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20170912132445) do
     t.string "animalBreed"
     t.string "animalGender"
     t.string "shelterName"
-    t.string "availabilityMessage"
   end
 
   create_table "selections", force: :cascade do |t|
@@ -27,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170912132445) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "zipCode"
+    t.string "userName"
+    t.string "userZipCode"
   end
 
 end
