@@ -76,10 +76,12 @@ class CommandLineInterface
   end
 
   def view_matches(current_user)
-    all_matches = Selection.find_by_userId(current_user.id)
+    all_matches = Selection.where(userId: current_user.id)
+    # binding.pry
     petInfo = all_matches.collect do |matches|
-      Pet.find_by_id(matches.petID)
+      Pet.find(matches.petId)
     end
+    petInfo.each { |e| puts "Name: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \nShelter: #{:shelterName}\n-------------------------------\n" }    
   end
 
 
