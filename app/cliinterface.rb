@@ -81,7 +81,7 @@ class CommandLineInterface
     petInfo = all_matches.collect do |matches|
       Pet.find(matches.petId)
     end
-    petInfo.each { |e| puts "Name: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \nShelter: #{:shelterName}\n-------------------------------\n" }    
+    petInfo.each { |e| puts "Name: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \nShelter: #{e[:shelterName]}\n-------------------------------\n" }    
   end
 
 
