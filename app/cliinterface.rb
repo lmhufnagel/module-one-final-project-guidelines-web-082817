@@ -3,12 +3,12 @@ require "pry"
 class CommandLineInterface
 
   def valid_account
-    puts "Please enter your name:"
+    puts "Please enter your name:".colorize(:color => :white, :background => :blue)
     name = gets.chomp.capitalize
   end
 
   def welcome(name)
-    puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! \nPlease enter your zipcode and we'll get started."
+    puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! \nPlease enter your zipcode and we'll get started.".colorize(:color => :white, :background => :blue)
     zipcode = gets.chomp
   end
 
@@ -17,7 +17,7 @@ class CommandLineInterface
   end
 
   def get_animal_type(zipcode)
-    puts "Thank you for input! Please enter the animal type you're interested in. \n(cat, dog, horse, reptile, rabbit, pig, or barnyard)"
+    puts "Thank you for input! Please enter the animal type you're interested in. \n(cat, dog, horse, reptile, rabbit, pig, or barnyard)".colorize(:color => :white, :background => :blue)
     animal_type = gets.chomp.downcase
     # if animalType != "cat" || "dog" || "horse" || "reptile" || "rabbit" || "pig" || "barnyard"
     #   puts "please enter a valid animal type"
@@ -26,12 +26,12 @@ class CommandLineInterface
   end
 
   def get_sex
-    puts "What gender of animal would you prefer? Write 'M' for male or 'F' for female."
+    puts "What gender of animal would you prefer? Write 'M' for male or 'F' for female.".colorize(:color => :white, :background => :blue)
     animal_gender = gets.chomp.upcase
   end
 
   def get_size
-    puts "What size animal are you interested in? Options are: 'S', 'M', 'L', or 'XL'."
+    puts "What size animal are you interested in? Options are: 'S', 'M', 'L', or 'XL'.".colorize(:color => :white, :background => :blue)
     animal_size = gets.chomp.upcase
   end
 
@@ -52,18 +52,18 @@ class CommandLineInterface
   end
 
   def print_animal_info(new_pet, searched_shelter, pet_availability)
-    puts "Our experts have found the perfect pet for you! Its information is below!"
-    puts "Name: #{new_pet.name}"
-    puts "Breed: #{new_pet.breeds.first}"
-    puts "Size: #{new_pet.size}"
-    puts "Sex: #{new_pet.sex}"
-    puts "Shelter: #{searched_shelter.name}"
-    puts "Availability: #{pet_availability}"
-    puts "Would you like to add this pet to your matches? 'Y' or 'N'"
+    puts "Our experts have found the perfect pet for you! Its information is below!".colorize(:color => :white, :background => :blue)
+    puts "Name: #{new_pet.name}".colorize(:green)
+    puts "Breed: #{new_pet.breeds.first}".colorize(:green)
+    puts "Size: #{new_pet.size}".colorize(:green)
+    puts "Sex: #{new_pet.sex}".colorize(:green)
+    puts "Shelter: #{searched_shelter.name}".colorize(:green)
+    puts "Availability: #{pet_availability}".colorize(:green)
+    puts "Would you like to add this pet to your matches? 'Y' or 'N'".colorize(:color => :white, :background => :blue)
   end
 
   def create_pet(new_pet, animal_type, animal_gender, searched_shelter)
-    puts "Added to your matches!"
+    puts "Added to your matches!".colorize(:color => :white, :background => :blue)
     animal = Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
   end
 
@@ -72,7 +72,7 @@ class CommandLineInterface
   end
 
   def get_match_response
-    puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!"
+    puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!".colorize(:color => :white, :background => :blue)
   end
 
   def view_matches(current_user)

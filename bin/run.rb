@@ -4,6 +4,8 @@ require_relative "../app/pet.rb"
 # require_relative "../app/user.rb"
 require_relative '../app/cliinterface'
 # require_relative '../app/models/dataimporter'
+old_logger = ActiveRecord::Base.logger
+ActiveRecord::Base.logger = nil
 
 new_cli = CommandLineInterface.new
 #new_cli.run
