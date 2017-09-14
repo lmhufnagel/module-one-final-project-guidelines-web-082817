@@ -1,14 +1,15 @@
 require "pry"
+require "colorize"
 
 class CommandLineInterface
 
   def valid_account
-    puts "Please enter your name:"
+    puts "Please enter your name:".colorize(:color => :white, :background => :blue)
     name = gets.chomp.capitalize
   end
 
   def welcome(name)
-    puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! \nPlease enter your zipcode and we'll get started."
+    puts "Welcome to PeTinder, #{name}! Lets find your perfect partner! \nPlease enter your zipcode and we'll get started.".colorize(:color => :white, :background => :blue)
     zipcode = gets.chomp
   end
 
@@ -17,7 +18,7 @@ class CommandLineInterface
   end
 
   def get_animal_type(zipcode)
-    puts "Thank you for input! Please enter the animal type you're interested in. \n(cat, dog, horse, reptile, rabbit, pig, or barnyard)"
+    puts "Thank you for input! Please enter the animal type you're interested in. \n(cat, dog, horse, reptile, rabbit, pig, or barnyard)".colorize(:color => :white, :background => :blue)
     animal_type = gets.chomp.downcase
     # if animalType != "cat" || "dog" || "horse" || "reptile" || "rabbit" || "pig" || "barnyard"
     #   puts "please enter a valid animal type"
@@ -26,17 +27,17 @@ class CommandLineInterface
   end
 
   def get_sex
-    puts "What gender of animal would you prefer? Write 'M' for male or 'F' for female."
+    puts "What gender of animal would you prefer? Write 'M' for male or 'F' for female.".colorize(:color => :white, :background => :blue)
     animal_gender = gets.chomp.upcase
   end
 
   def get_size
-    puts "What size animal are you interested in? Options are: 'S', 'M', 'L', or 'XL'."
+    puts "What size animal are you interested in? Options are: 'S', 'M', 'L', or 'XL'.".colorize(:color => :white, :background => :blue)
     animal_size = gets.chomp.upcase
   end
 
   def availability_message_holder
-    availability_messages = ["Waiting for you...", "All yours, baby.", "Will dance for food!", "Take me home!!!!", "Will not show up drunk to your house at 3AM crying, asking for you to let me in. Will probably show up crying asking for you to let me in.", "I'm a fun-loving animal with absolutely no interest in murder.", "If you can't offer me something, GTFO.", "This is snek.", "Free the nipple."]
+    availability_messages = ["Waiting for you...", "All yours, baby.", "Will dance for food!", "Take me home!!!!", "Will not show up drunk to your house at 3AM crying, asking for you to let me in. Will probably show up crying asking for you to let me in.", "I'm a fun-loving animal with absolutely no interest in murder.", "If you can't offer me something, GTFO.", "Free the nipple."]
     pet_availability = availability_messages.sample
   end
 
@@ -52,18 +53,18 @@ class CommandLineInterface
   end
 
   def print_animal_info(new_pet, searched_shelter, pet_availability)
-    puts "Our experts have found the perfect pet for you! Its information is below!"
-    puts "Name: #{new_pet.name}"
-    puts "Breed: #{new_pet.breeds.first}"
-    puts "Size: #{new_pet.size}"
-    puts "Sex: #{new_pet.sex}"
-    puts "Shelter: #{searched_shelter.name}"
-    puts "Availability: #{pet_availability}"
-    puts "Would you like to add this pet to your matches? 'Y' or 'N'"
+    puts "Our experts have found the perfect pet for you! Its information is below!".colorize(:color => :white, :background => :blue)
+    puts "Name: #{new_pet.name}".colorize(:color => :green)
+    puts "Breed: #{new_pet.breeds.first}".colorize(:color => :green)
+    puts "Size: #{new_pet.size}".colorize(:color => :green)
+    puts "Sex: #{new_pet.sex}".colorize(:color => :green)
+    puts "Shelter: #{searched_shelter.name}".colorize(:color => :green)
+    puts "Availability: #{pet_availability}".colorize(:color => :green)
+    puts "Would you like to add this pet to your matches? 'Y' or 'N'".colorize(:color => :white, :background => :blue)
   end
 
   def create_pet(new_pet, animal_type, animal_gender, searched_shelter)
-    puts "Added to your matches!"
+    puts "Added to your matches!".colorize(:color => :white, :background => :blue)
     animal = Pet.find_or_create_by(animalName: new_pet.name, animalType: animal_type, animalBreed: new_pet.breeds.first, animalGender: animal_gender, shelterName: searched_shelter.name)
   end
 
@@ -72,7 +73,7 @@ class CommandLineInterface
   end
 
   def get_match_response
-    puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!"
+    puts "Congratulations on matching with this animal! Type 'more' to see more animals or type 'matches' to see your matches!".colorize(:color => :white, :background => :blue)
   end
 
   def view_matches(current_user)
@@ -81,9 +82,23 @@ class CommandLineInterface
     petInfo = all_matches.collect do |matches|
       Pet.find(matches.petId)
     end
-    petInfo.each { |e| puts "Name: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \nShelter: #{e[:shelterName]}\n-------------------------------\n" }    
+    petInfo.each { |e| puts "Pet ID: #{e[:id]} \nName: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \nShelter: #{e[:shelterName]}\n-------------------------------\n".colorize(:color => :green) }
   end
 
+  def ask_about_adoption
+    puts "If you would like to choose an animal for adoption please enter 'Adopt'. If not, press enter to exit the program!".colorize(:color => :white, :background => :blue)
+  end
 
+  def get_adoption_selection(current_user)
+    puts "Please enter the ID of the pet you would like to adopt:".colorize(:color => :white, :background => :blue)
+    adopted_pet = gets.chomp.upcase
+    adoption = Selection.find_by(petId: adopted_pet, userId: current_user.id)
+    adoption.update(adoptionStatus: true)
+    adoption_matches = Selection.where(userId: current_user.id, adoptionStatus: true)
+    adoptedPets = adoption_matches.collect do |matches|
+      Pet.find(matches.petId)
+    end
+    adoptedPets.each { |e| puts "Name: #{e[:animalName]} \nType: #{e[:animalType]} \nBreed: #{e[:animalBreed]} \nGender: #{e[:animalGender]} \n-------------------------------\n".colorize(:color => :green) }
+  end
 
 end

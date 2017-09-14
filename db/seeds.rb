@@ -1,11 +1,11 @@
 require 'petfinder'
 require 'pry'
 
-Pet.create(name: "Duke", animalType: "dog", mix: "yes", petGenderType: "M")
-Pet.create(name: "Louie", animalType: "cat", mix: "no", petGenderType: "M")
-Pet.create(name: "Charlie", animalType: "dog", mix: "yes", petGenderType:"M")
-Pet.create(name: "Sally", animalType: "cat", mix: "yes", petGenderType:"F")
-Pet.create(name: "Oreo", animalType: "duck", mix: "no", petGenderType:"M")
+# Pet.create(name: "Duke", animalType: "dog", mix: "yes", petGenderType: "M")
+# Pet.create(name: "Louie", animalType: "cat", mix: "no", petGenderType: "M")
+# Pet.create(name: "Charlie", animalType: "dog", mix: "yes", petGenderType:"M")
+# Pet.create(name: "Sally", animalType: "cat", mix: "yes", petGenderType:"F")
+# Pet.create(name: "Oreo", animalType: "duck", mix: "no", petGenderType:"M")
 
 # name = petfinder.find_pets.name
 # animalType = petfinder.breeds(animal_type)

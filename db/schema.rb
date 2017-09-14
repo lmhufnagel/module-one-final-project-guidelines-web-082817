@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170912132445) do
   create_table "selections", force: :cascade do |t|
     t.integer "petId"
     t.integer "userId"
+    t.boolean "adoptionStatus"
   end
 
   create_table "users", force: :cascade do |t|

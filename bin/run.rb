@@ -3,10 +3,11 @@ require_relative "../app/pet.rb"
 # require_relative "../app/selections.rb"
 # require_relative "../app/user.rb"
 require_relative '../app/cliinterface'
-# require_relative '../app/models/dataimporter'
+
+old_logger = ActiveRecord::Base.logger
+ActiveRecord::Base.logger = nil
 
 new_cli = CommandLineInterface.new
-#new_cli.run
 
 name = new_cli.valid_account
 
@@ -47,9 +48,31 @@ while match_response == "More"
 
   match_response = gets.chomp.capitalize
 
+  new_cli.view_matches(create_user)
+
 end
 
-new_cli.view_matches(create_user)
+adoption_response = "Adopt"
+
+while adoption_response == "Adopt"
+
+  new_cli.ask_about_adoption
+
+  adoption_response = gets.chomp.capitalize
+
+  if adoption_response != "Adopt"
+    break
+  end
+
+  new_cli.get_adoption_selection(create_user)
+
+  new_cli.ask_about_adoption
+
+  adoption_response = gets.chomp.capitalize
+
+end
+
+
 # 1 get user info and store it in variables
 # 2 get user animal preference and store in variable
 # 3 structure and send query to api
