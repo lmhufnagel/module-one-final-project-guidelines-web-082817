@@ -4,6 +4,15 @@ require "colorize"
 class CommandLineInterface
 
   def valid_account
+    puts "
+
+     ██████╗ ███████╗████████╗██╗███╗   ██╗██████╗ ███████╗██████╗
+     ██╔══██╗██╔════╝╚══██╔══╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗
+     ██████╔╝█████╗     ██║   ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝
+     ██╔═══╝ ██╔══╝     ██║   ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
+     ██║     ███████╗   ██║   ██║██║ ╚████║██████╔╝███████╗██║  ██║
+     ╚═╝     ╚══════╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+       ".colorize(:color => :red)
     puts "Please enter your name:".colorize(:color => :white, :background => :blue)
     name = gets.chomp.capitalize
   end
